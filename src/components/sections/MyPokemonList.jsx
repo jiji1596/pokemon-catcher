@@ -6,11 +6,11 @@ export const MyPokemonList = ({ myPokemons }) => {
           {myPokemons.length > 0 &&
             myPokemons.map((pokemon, key) => {
               return (
-                <div key={key} className="relative group h-80 w-full pt-5">
+                <div key={key} className="relative group h-30 w-80 pt-5">
                   <div className="bg-gradient-to-r from-blue-400 to-blue-800 p-2 rounded-3xl h-full">
-                    <div className="bg-white border-box-border rounded-3xl shadow-lg shadow-box-shadows p-10 flex  h-full relative">
-                      <img className="h-20 w-20" src={pokemon.image} alt="" />
-                      <div className="flex flex-col">
+                    <div className="bg-white border-box-border rounded-3xl shadow-lg shadow-box-shadows p-1 flex justify-start space-x-2  h-full relative">
+                      <img className="ml-3 h-20 w-20" src={pokemon.image} alt="" />
+                      <div className="flex flex-col justify-center items-start">
                         <h3 className="text-xl font-semibold text-center pb-1 capitalize text-blue-800">
                           {pokemon.name}
                         </h3>

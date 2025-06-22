@@ -10,7 +10,7 @@ export const Layout = ({ title, children }) => {
   return (
     <>
       <Navbar />
-      <main className="grid grid-cols-2 pt-30 gap-y-20 md:gap-y-32 overflow-hidden">
+      <main className="grid grid-cols-[2fr_1fr] pt-24 overflow-hidden">
         {children}
       </main>
     </>
