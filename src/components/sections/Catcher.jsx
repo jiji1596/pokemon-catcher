@@ -12,9 +12,6 @@ export const Catcher = ({ clickRandom, pokemon, loading, catchPokemon, error, is
       {loading && <div className="pt-10">
         <span className="loading loading-bars loading-lg"></span>
       </div> }
-      {error && <div className="pt-10">
-        <p>Pokemon bag is full. Release a pokemon first.</p>
-      </div> }
       {pokemon && (
         <RandomCard
         pokemon={pokemon}
@@ -25,6 +22,9 @@ export const Catcher = ({ clickRandom, pokemon, loading, catchPokemon, error, is
         isDisabled={isDisabled}
         />
       )}
+           {error && <div className="pt-10">
+        <p>Pokemon bag is full. Release a pokemon first.</p>
+      </div> }
     </section>
   );
 };
