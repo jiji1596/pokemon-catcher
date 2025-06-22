@@ -1,6 +1,6 @@
 import { RandomCard } from "../cards/RandomCard";
 
-export const Catcher = ({ clickRandom, pokemon, loading, catchPokemon, error }) => {
+export const Catcher = ({ clickRandom, pokemon, loading, catchPokemon, error, isCatching, isFlipped, result, isDisabled}) => {
   return (
     <section className="pt-10 flex flex-col justify-start items-center space-y-4">
       <button
@@ -16,7 +16,14 @@ export const Catcher = ({ clickRandom, pokemon, loading, catchPokemon, error }) 
         <p>Pokemon bag is full. Release a pokemon first.</p>
       </div> }
       {pokemon && (
-        <RandomCard pokemon={pokemon} catchPokemon={catchPokemon}/>
+        <RandomCard
+        pokemon={pokemon}
+        catchPokemon={catchPokemon}
+        isCatching={isCatching}
+        isFlipped={isFlipped}
+        result={result}
+        isDisabled={isDisabled}
+        />
       )}
     </section>
   );

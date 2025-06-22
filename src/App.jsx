@@ -8,6 +8,10 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [myPokemons, setMyPokemons] = useState([]);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [isCatching, setIsCatching] = useState(false);
+  const [result, setResult] = useState(null);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   function getDifficulty(stats) {
     const hp = stats.find((s) => s.stat.name === "hp").base_stat;
@@ -59,26 +63,44 @@ function App() {
     setLoading(false); // done loading
   }
 
+  useEffect(() => {
+    console.log(myPokemons);
+  }, [myPokemons]);
+
   function clickRandom() {
+    setError(false);
+    setIsDisabled(false);
+    setResult(null);
     setPokemon(null);
     fetchPokemon();
   }
 
   function catchPokemon() {
-    const catchRates = {
-      Easy: 0.9,
-      Intermediate: 0.6,
-      Difficult: 0.3,
-    };
-    const catchChance = catchRates[pokemon.tier];
-    const isCaught = Math.random() < catchChance;
+    setError(false);
+    setIsFlipped(true);
+    setIsCatching(true);
+    setResult(null);
+    setTimeout(() => {
+      setIsDisabled(true);
+      const catchRates = {
+        Easy: 0.9,
+        Intermediate: 0.6,
+        Difficult: 0.3,
+      };
+      const catchChance = catchRates[pokemon.tier];
+      const wasCaught = Math.random() < catchChance;
+      setResult(wasCaught ? "caught" : "escaped");
 
-    if (myPokemons.length < 6 && isCaught) {
-      const arrayCopy = [...myPokemons, pokemon];
-      setMyPokemons(arrayCopy);
-    } else {
-      setError(true);
-    }
+      if (myPokemons.length < 6 && wasCaught) {
+        const arrayCopy = [...myPokemons, pokemon];
+        setMyPokemons(arrayCopy);
+      } else {
+        setError(true);
+      }
+
+      setIsCatching(false);
+      setIsFlipped(false);
+    }, 3000);
   }
 
   return (
@@ -89,6 +111,10 @@ function App() {
         pokemon={pokemon}
         loading={loading}
         error={error}
+        isCatching={isCatching}
+        isFlipped={isFlipped}
+        result={result}
+        isDisabled={isDisabled}
       />
       <MyPokemonList myPokemons={myPokemons} />
     </Layout>
