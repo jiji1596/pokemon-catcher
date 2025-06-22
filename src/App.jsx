@@ -6,6 +6,7 @@ import { MyPokemonList } from "./components/sections/MyPokemonList";
 function App() {
   const [pokemon, setPokemon] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [myPokemons, setMyPokemons] = useState([]);
 
   function getDifficulty(stats) {
@@ -23,7 +24,7 @@ function App() {
       tier = "Difficult";
     }
 
-    return tier
+    return tier;
   }
 
   async function getTypeImage(url) {
@@ -64,14 +65,21 @@ function App() {
   }
 
   function catchPokemon() {
-    const arrayCopy = [...myPokemons, pokemon];
-    setMyPokemons(arrayCopy);
+    const catchRates = {
+      Easy: 0.9,
+      Intermediate: 0.6,
+      Difficult: 0.3,
+    };
+    const catchChance = catchRates[pokemon.tier];
+    const isCaught = Math.random() < catchChance;
 
+    if (myPokemons.length < 6 && isCaught) {
+      const arrayCopy = [...myPokemons, pokemon];
+      setMyPokemons(arrayCopy);
+    } else {
+      setError(true);
+    }
   }
-
-  useEffect(() => {
-  console.log("Updated Pokémon list:", myPokemons);
-}, [myPokemons]);
 
   return (
     <Layout title={"Pokemon Catcher"}>
@@ -80,8 +88,9 @@ function App() {
         catchPokemon={catchPokemon}
         pokemon={pokemon}
         loading={loading}
-       />
-       <MyPokemonList myPokemons={myPokemons}/>
+        error={error}
+      />
+      <MyPokemonList myPokemons={myPokemons} />
     </Layout>
   );
 }

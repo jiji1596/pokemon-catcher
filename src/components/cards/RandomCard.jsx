@@ -1,6 +1,6 @@
 export const RandomCard = ({pokemon, catchPokemon}) => {
   return (
-    <div className="relative group h-full pt-5 w-80">
+    <div className="relative group h-auto pt-5 w-80">
       <div className="bg-gradient-to-r from-blue-400 to-blue-800 p-2 rounded-3xl h-full">
         <div className="bg-white border-box-border rounded-3xl shadow-lg shadow-box-shadows p-10 flex flex-col h-full relative">
           <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-primary text-white text-sm font-bold uppercase tracking-wider px-3 py-2 rounded-full bg-gradient-to-r from-blue-400 to-blue-800">
