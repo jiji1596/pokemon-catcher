@@ -14,7 +14,7 @@ export const Catcher = ({
     <section className="pt-10 flex flex-col justify-start items-center space-y-4">
       <button
         onClick={clickRandom}
-        className="px-6 py-3 outline-none rounded-2xl relative cursor-pointer overflow-hidden border-transparent bg-red-600 font-semibold transform transition-transform duration-300 hover:scale-105 text-white"
+        className="px-6 py-3 outline-none rounded-2xl relative cursor-pointer overflow-hidden border-transparent bg-indigo-600 hover:bg-indigo-700 font-semibold transform transition-transform duration-300 hover:scale-105 text-white"
       >
         Draw Pokemon
       </button>
@@ -33,7 +33,7 @@ export const Catcher = ({
             }
           </div>
           <div className="card-back">
-            <img src={"/src/assets/card_back.png"} alt="pokeball" />
+            <img src={"/card_back.png"} alt="pokeball" />
           </div>
         </div>
       </div>
