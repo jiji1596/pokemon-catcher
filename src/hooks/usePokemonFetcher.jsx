@@ -1,5 +1,5 @@
 import { getDifficulty, getTypeImage } from "../utils/pokemon";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export async function fetchRandomPokemon() {
   const pokemonNum = Math.floor(Math.random() * 1024);
@@ -24,18 +24,13 @@ export async function fetchRandomPokemon() {
   return pokemonData;
 }
 
-
-
 export function usePokemonFetcher() {
   const [pokemon, setPokemon] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   const fetchPokemon = async () => {
-    setLoading(true);
     const data = await fetchRandomPokemon();
     setPokemon(data);
-    setLoading(false);
   };
 
-  return { pokemon, loading, fetchPokemon };
+  return { pokemon, fetchPokemon };
 }

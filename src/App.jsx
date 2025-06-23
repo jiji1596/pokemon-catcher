@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layout } from "./components/Layout";
 import { Catcher } from "./components/sections/Catcher";
 import { MyPokemonList } from "./components/sections/MyPokemonList";
@@ -7,13 +7,11 @@ import { usePokemonFetcher } from "./hooks/usePokemonFetcher";
 function App() {
   const [error, setError] = useState(null);
   const [myPokemons, setMyPokemons] = useState([]);
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(true);
   const [isCatching, setIsCatching] = useState(false);
   const [result, setResult] = useState(null);
   const [isDisabled, setIsDisabled] = useState(false);
-  const { pokemon, loading, fetchPokemon } = usePokemonFetcher();
-
-
+  const { pokemon, fetchPokemon } = usePokemonFetcher();
 
   function clickRandom() {
     setError(false);
@@ -21,6 +19,12 @@ function App() {
     setResult(null);
     fetchPokemon();
   }
+
+  useEffect(() => {
+    if (pokemon) {
+      setIsFlipped(false);
+    }
+  }, [pokemon]);
 
   function catchPokemon() {
     if (myPokemons.length < 6) {
@@ -57,7 +61,6 @@ function App() {
         clickRandom={clickRandom}
         catchPokemon={catchPokemon}
         pokemon={pokemon}
-        loading={loading}
         error={error}
         isCatching={isCatching}
         isFlipped={isFlipped}
