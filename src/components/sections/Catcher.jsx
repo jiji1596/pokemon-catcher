@@ -11,8 +11,8 @@ export const Catcher = ({
   isDisabled,
 }) => {
   return (
-    <section className="pt-10 flex flex-col justify-start items-end space-y-4 mr-16">
-      <div className="mr-12">
+    <section className="pt-10 flex flex-col justify-start items-center lg:items-end space-y-4 lg:mr-16">
+      <div className="lg:mr-12">
         <button
           onClick={clickRandom}
           className="px-6 py-3 outline-none rounded-2xl relative cursor-pointer overflow-hidden border-transparent bg-indigo-600 hover:bg-indigo-700 font-semibold transform transition-transform duration-300 hover:scale-105 text-white"

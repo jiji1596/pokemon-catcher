@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { Navbar } from './sections/Navbar';
-import PropTypes from 'prop-types';
+import { useEffect } from "react";
+import { Navbar } from "./sections/Navbar";
+import PropTypes from "prop-types";
 
 export const Layout = ({ title, children }) => {
   useEffect(() => {
@@ -10,8 +10,10 @@ export const Layout = ({ title, children }) => {
   return (
     <>
       <Navbar />
-      <main className="grid sm:grid-cols-1 md:grid-cols-2 pt-24 overflow-hidden ">
-        {children}
+      <main>
+        <div className="grid gap-y-10 sm:grid-cols-1 md:grid-cols-2 pt-24 md:pt-32 overflow-hidden ">
+          {children}
+        </div>
       </main>
     </>
   );
