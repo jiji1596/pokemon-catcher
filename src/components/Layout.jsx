@@ -10,7 +10,7 @@ export const Layout = ({ title, children }) => {
   return (
     <>
       <Navbar />
-      <main className="grid sm:grid-cols-1 md:grid-cols-[2fr_1fr] pt-24 overflow-hidden ">
+      <main className="grid sm:grid-cols-1 md:grid-cols-2 pt-24 overflow-hidden ">
         {children}
       </main>
     </>

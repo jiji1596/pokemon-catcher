@@ -7,8 +7,10 @@ export async function fetchRandomPokemon() {
 
   const res = await fetch(url);
   const data = await res.json();
+  console.log(data);
 
   const pokemonData = {
+    id: data.id,
     name: data.name,
     types: [],
     image: data.sprites.other["official-artwork"].front_default,
@@ -30,6 +32,10 @@ export function usePokemonFetcher() {
   const fetchPokemon = async () => {
     const data = await fetchRandomPokemon();
     setPokemon(data);
+    const audio = new Audio(
+      `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${data.id}.ogg`
+    );
+    audio.play();
   };
 
   return { pokemon, fetchPokemon };

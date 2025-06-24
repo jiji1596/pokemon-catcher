@@ -1,10 +1,45 @@
 @import "tailwindcss";
 
 
+@layer utilities {
+  .primary {
+    color: #FF3CAC;
+  }
+  .secondary {
+    color: 	#784BA0 ;
+  }
+  .gradient-1 {
+    background-color: #FF3CAC;
+  }
+  .gradient-2 {
+    background-color: #784BA0;
+  }
+  .card-outline {
+    background-color: #A1E3D8;
+  }
+  .text-heading-1 {
+    color: rgb(var(--heading-1))
+  }
+  .text-heading-2 {
+    color: rgb(var(--heading-2))
+  }
+  .text-heading-3 {
+    color: rgb(var(--heading-3))
+  }
+}
+
+body{
+  background-color: #FDF6F0;
+  color: 	#2F2F2F;
+}
+
+
+
 
 h1, .title {
   font-family: 'Press Start 2P', cursive;
 }
+
 
 
 .card-container {
@@ -50,4 +85,28 @@ h1, .title {
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+  }
+}
+
+.sparkle {
+  position: absolute;
+  border-radius: 9999px;
+  background-color: #00e0ff;
+  animation: sparkle 1s ease-out forwards;
+  pointer-events: none;
 }
