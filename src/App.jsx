@@ -3,6 +3,7 @@ import { usePokemonStore } from "./store/PokemonStore";
 import { Layout } from "./components/Layout";
 import { Catcher } from "./components/sections/Catcher";
 import { MyPokemonList } from "./components/sections/MyPokemonList";
+import { StoredPokemonList } from "./components/sections/StoredPokemonList";
 
 function App() {
   const error = usePokemonStore((s) => s.error);
@@ -32,6 +33,7 @@ function App() {
         isDisabled={isDisabled}
       />
       <MyPokemonList myPokemons={myPokemons} />
+      <StoredPokemonList />
     </Layout>
   );
 }
