@@ -1,3 +1,5 @@
+import { PokemonListCard } from "../cards/PokemonListCard";
+
 export const MyPokemonList = ({ myPokemons }) => {
   const slots = Array.from({ length: 6 }, (_, i) => myPokemons[i] || null);
 
@@ -19,25 +21,7 @@ export const MyPokemonList = ({ myPokemons }) => {
                     <div className="bg-white border-box-border rounded-3xl shadow-lg shadow-box-shadows p-1 flex h-full w-full relative">
                       <h1 className="ml-3 lg:text-xl text-md my-auto">#{key + 1}</h1>
                       {pokemon ? (
-                        <div className="flex grow-1">
-                          <img
-                            className="h-18 w-18"
-                            src={pokemon.image}
-                            alt=""
-                          />
-                          <div className="flex flex-col items-start">
-                            <h3 className="text-xl font-semibold text-center pb-1 capitalize">
-                              {pokemon.name}
-                            </h3>
-                            <ul className="grid grid-cols-2 gap-2 pb-3">
-                              {pokemon.types.map((type, i) => (
-                                <li key={i}>
-                                  <img className="h-5 w-20" src={type} alt="" />
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
+                       <PokemonListCard pokemon={pokemon} />
                       ) : (
                         // Empty slot
                         <div className="flex flex-col items-center justify-center mr-6 h-full w-full text-gray-400">

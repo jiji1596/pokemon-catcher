@@ -1,5 +1,4 @@
 import { getDifficulty, getTypeImage } from "../utils/pokemon";
-import { useState } from "react";
 
 export async function fetchRandomPokemon() {
   const pokemonNum = Math.floor(Math.random() * 1024);
@@ -24,19 +23,4 @@ export async function fetchRandomPokemon() {
   pokemonData.types.push(...typeArray);
 
   return pokemonData;
-}
-
-export function usePokemonFetcher() {
-  const [pokemon, setPokemon] = useState(null);
-
-  const fetchPokemon = async () => {
-    const data = await fetchRandomPokemon();
-    setPokemon(data);
-    const audio = new Audio(
-      `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${data.id}.ogg`
-    );
-    audio.play();
-  };
-
-  return { pokemon, fetchPokemon };
 }
