@@ -12,6 +12,7 @@ export const usePokemonStore = create(
       isCatching: false,
       isDisabled: false,
       result: null,
+      storedPokemons: [],
       fetchPokemon: async () => {
         const data = await fetchRandomPokemon();
         set({ pokemon: data });
@@ -22,10 +23,12 @@ export const usePokemonStore = create(
       },
       catchPokemon: () => {
         if (get().myPokemons.length < 6) {
-          set({ error: false });
-          set({ isFlipped: false });
-          set({ isCatching: true });
-          set({ result: null });
+          set({
+            error: false,
+            isDisabled: false,
+            result: null,
+            isFlipped: true,
+          });
           setTimeout(() => {
             const catchRates = {
               Easy: 0.9,
@@ -41,8 +44,7 @@ export const usePokemonStore = create(
               set({ myPokemons: arrayCopy });
             }
             set({ isCatching: false });
-
-            set({ isFlipped: false});
+            set({ isFlipped: false });
           }, 1500);
         } else {
           set({ error: true });
@@ -57,9 +59,20 @@ export const usePokemonStore = create(
         });
         await get().fetchPokemon();
       },
+      store: (pokemon) => {
+        const myPokemonsCopy = get().myPokemons
+        const updatedPokemonsCopy = myPokemonsCopy.filter((storedPokemon) => storedPokemon.name !== pokemon.name )
+        const storedCopy = [...get().storedPokemons, pokemon]
+        set({
+          storedPokemons: storedCopy,
+          myPokemons: updatedPokemonsCopy
+        })
+        console.log(get().storedPokemons);
+
+      }
     }),
     {
-      name: "kanban-storage",
+      name: "pokemon-storage",
     }
   )
 );

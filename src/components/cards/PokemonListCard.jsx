@@ -1,4 +1,8 @@
+import { usePokemonStore } from "../../store/PokemonStore";
+
 export const PokemonListCard = ({pokemon}) => {
+  const store = usePokemonStore((s) => s.store);
+
   return (
     <div className="flex grow-1">
       <img className="h-20 w-20 mx-1" src={pokemon.image} alt="" />
@@ -14,7 +18,7 @@ export const PokemonListCard = ({pokemon}) => {
           ))}
         </ul>
       </div>
-      <button className="w-20 h-10 my-auto ml-3 rounded-lg bg-red-700 text-white hover:bg-red-600 font-semibold py-2 ">Store</button>
+      <button onClick={() => store(pokemon)} className="w-20 h-10 my-auto ml-3 rounded-lg bg-red-700 text-white hover:bg-red-600 font-semibold py-2">Store</button>
     </div>
   );
 };
