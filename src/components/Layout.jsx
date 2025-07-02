@@ -11,7 +11,7 @@ export const Layout = ({ title, children }) => {
     <>
       <Navbar />
       <main>
-        <div className="grid gap-y-10 sm:grid-cols-1 md:grid-cols-2 pt-24 md:pt-32 overflow-hidden ">
+        <div className="flex flex-col">
           {children}
         </div>
       </main>
