@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { fetchRandomPokemon } from "../hooks/usePokemonFetcher";
 
-
 export const usePokemonStore = create(
   persist(
     (set, get) => ({
@@ -15,7 +14,7 @@ export const usePokemonStore = create(
       result: null,
       fetchPokemon: async () => {
         const data = await fetchRandomPokemon();
-        set({pokemon: data})
+        set({ pokemon: data });
         const audio = new Audio(
           `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${data.id}.ogg`
         );
@@ -38,21 +37,25 @@ export const usePokemonStore = create(
             set({ result: wasCaught ? "caught" : "escaped" });
             set({ isDisabled: true });
             if (wasCaught) {
-              const arrayCopy = [...myPokemons, pokemon];
+              const arrayCopy = [...get().myPokemons, get().pokemon];
               set({ myPokemons: arrayCopy });
             }
             set({ isCatching: false });
-            set({ isFlipped: true });
+
+            set({ isFlipped: false});
           }, 1500);
         } else {
           set({ error: true });
         }
       },
-      clickRandom: () => {
-        set({ error: false });
-        set({ isDisabled: false });
-        set({ result: null });
-        get().fetchPokemon;
+      clickRandom: async () => {
+        set({
+          error: false,
+          isDisabled: false,
+          result: null,
+          isFlipped: false,
+        });
+        await get().fetchPokemon();
       },
     }),
     {
