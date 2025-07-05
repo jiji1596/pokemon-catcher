@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { fetchRandomPokemon } from "../hooks/usePokemonFetcher";
+import { StoredPokemonList } from "../components/sections/StoredPokemonList";
 
 export const usePokemonStore = create(
   persist(
@@ -61,13 +62,21 @@ export const usePokemonStore = create(
       },
       store: (pokemon) => {
         const myPokemonsCopy = get().myPokemons
-        const updatedPokemonsCopy = myPokemonsCopy.filter((storedPokemon) => storedPokemon.name !== pokemon.name )
+        const updatedPokemonsCopy = myPokemonsCopy.filter((myPokemon) => myPokemon.name !== pokemon.name )
         const storedCopy = [...get().storedPokemons, pokemon]
         set({
           storedPokemons: storedCopy,
           myPokemons: updatedPokemonsCopy
         })
-        console.log(get().storedPokemons);
+      },
+      addToTeam: (pokemon) => {
+        const storedCopy = get().storedPokemons;
+        const updated = storedCopy.filter((storedPokemon) => storedPokemon.id !== pokemon.id)
+        const myTeamCopy = [...get().myPokemons, pokemon]
+        set({
+          storedPokemons: updated,
+          myPokemons: myTeamCopy
+        })
 
       }
     }),

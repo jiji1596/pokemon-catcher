@@ -2,6 +2,7 @@ import { usePokemonStore } from "../../store/PokemonStore";
 
 export const StoredPokemonList = () => {
   const storedPokemons = usePokemonStore((s) => s.storedPokemons);
+  const addToTeam = usePokemonStore((s) => s.addToTeam);
 
   return (
     <div className="flex flex-col justify-center items-center w-full">
@@ -23,11 +24,16 @@ export const StoredPokemonList = () => {
                 <ul className="flex gap-2">
                   {pokemon.types.map((type, i) => (
                     <li key={i}>
-                      <img className="h-4 w-16 my-0" src={type} alt="" />
+                      <img className="h-5 w-20 my-0" src={type} alt="" />
                     </li>
                   ))}
                 </ul>
-
+                <button
+                  onClick={() => addToTeam(pokemon)}
+                  className="w-full h-10 my-3 rounded-lg bg-green-800 text-gray-200 font-semibold py-2"
+                >
+                  Add To Team
+                </button>
               </div>
             );
           })}
