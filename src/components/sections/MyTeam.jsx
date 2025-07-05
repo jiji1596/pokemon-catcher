@@ -1,6 +1,6 @@
 import { PokemonListCard } from "../cards/PokemonListCard";
 
-export const MyPokemonList = ({ myPokemons }) => {
+export const MyTeam = ({ myPokemons }) => {
   const slots = Array.from({ length: 6 }, (_, i) => myPokemons[i] || null);
 
   return (

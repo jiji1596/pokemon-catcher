@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { usePokemonStore } from "./store/PokemonStore";
 import { Layout } from "./components/Layout";
 import { Catcher } from "./components/sections/Catcher";
-import { MyPokemonList } from "./components/sections/MyPokemonList";
+import { MyTeam} from "./components/sections/MyTeam";
 import { StoredPokemonList } from "./components/sections/StoredPokemonList";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
           result={result}
           isDisabled={isDisabled}
         />
-        <MyPokemonList myPokemons={myPokemons} />
+        <MyTeam myPokemons={myPokemons} />
       </div>
       <StoredPokemonList />
     </Layout>

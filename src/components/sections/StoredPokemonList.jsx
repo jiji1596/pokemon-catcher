@@ -27,6 +27,7 @@ export const StoredPokemonList = () => {
                     </li>
                   ))}
                 </ul>
+
               </div>
             );
           })}
